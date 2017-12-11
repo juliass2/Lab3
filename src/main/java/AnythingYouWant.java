@@ -2,6 +2,7 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
 * Class.
@@ -36,12 +37,13 @@ public class AnythingYouWant {
         //New scanner to keep track of words within url.
         Scanner scan = new Scanner(contents);
         scan.useDelimiter(" ");
+        //Counting unique words
+        ArrayList<String> uniqueWords = new ArrayList();
         while (scan.hasNext()) {
             words++;
-            scan.next();
+            uniqueWords.add(scan.next());
         }
         scan.close();
-
 
         //New (SPECIFIC TO HAMLET AND THE WORD "prince") counting specific words
         int countWord = 0;
@@ -58,16 +60,17 @@ public class AnythingYouWant {
         }
         scan0.close();
 /*
-        while (contents0.indexOf("prince") != -1)
-        {
-            int index = contents0.indexOf("prince");
-            contents0.substring(index);
-            countWord++;
+        //Finding how many unique numbers there are
+        for (int i = uniqueWords.size()-1; i>= 0; i--) {
+            if (uniqueWords.indexOf(uniqueWords.get(i)) != -1) {
+                uniqueWords.remove(i);
+            }
         }
 */
-
         contents = contents + "\nThere are " + words + " word(s) in this URL.";
-        contents = contents + "The word 'prince' appears " + countWord + " times.";
+        contents = contents + "\nThe word 'prince' appears " + countWord + " times.";
+//      contents = contents + "\nThere are " + uniqueWords.size() + " unique word(s) in this URL.";
+
         return contents;
     }
 }
